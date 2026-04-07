@@ -1,303 +1,271 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Food-Net</title>
-
-<style>
-*{box-sizing:border-box;}
-body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:#0f0f12;
-  color:#fff;
-}
-
-/* TOS */
-.tos-screen{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.9);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-
-.tos-box{
-  background:#14141b;
-  padding:25px;
-  border-radius:16px;
-  max-width:400px;
-  text-align:center;
-}
-
-.tos-box p{
-  color:#aaa;
-  font-size:14px;
-}
-
-.tos-box button{
-  margin-top:15px;
-  padding:12px 20px;
-  border:none;
-  border-radius:10px;
-  background:#fff;
-  color:#000;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* TOPBAR */
-.topbar{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  padding:20px 30px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-direction:row-reverse;
-  z-index:999;
-}
-
-.logo img{
-  height:40px;
-}
-
-/* HERO */
-.hero{
-  position:relative;
-  height:100vh;
-}
-.hero img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:brightness(.85);
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top,#0f0f12 15%,transparent);
-}
-.hero-content{
-  position:relative;
-  z-index:2;
-  height:100%;
-  display:flex;
-  align-items:flex-end;
-  padding:60px;
-}
-.hero h1{font-size:56px;margin:0;}
-.hero p{color:#aaa;}
-
-/* SECTION */
-.section{
-  padding:80px 60px;
-  max-width:1200px;
-  margin:auto;
-}
-
-/* GRID */
-.market-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-}
-
-@media(min-width:800px){
-  .market-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
-}
-
-/* CARD */
-.unit-card{
-  position:relative;
-  background:#14141b;
-  border-radius:20px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:.25s;
-}
-
-.unit-card:hover{
-  transform:translateY(-6px);
-}
-
-.unit-img{
-  width:100%;
-  aspect-ratio:1/1;
-  overflow:hidden;
-}
-
-.unit-img img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.unit-overlay{
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  padding:12px;
-  background:linear-gradient(to top,rgba(0,0,0,.85),transparent);
-}
-
-.unit-overlay h3{margin:0;font-size:14px;}
-.unit-overlay p{font-size:12px;color:#aaa;}
-
-.search-box{
-  margin-bottom:25px;
-}
-
-.search-box input{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:none;
-  background:#1b1b24;
-  color:white;
-}
-</style>
-</head>
-
-<body>
-
-<!-- TOS -->
-<div id="tos-screen" class="tos-screen">
-  <div class="tos-box">
-    <h2>Food-Net Terms</h2>
-    <p>
-      Kami akan mengumpulkan data berupa interaksi dan lokasi selama anda berada di dalam website ini.
-      Kami tidak akan mengumpulkan data pribadi dan data yang anda berikan akan membantu proses development
-      dan pembiayaan proyek lainnya dari kami.
-    </p>
-    <button onclick="acceptTOS()">Accept & Continue</button>
-  </div>
-</div>
-
-<div class="topbar">
-  <div class="logo">
-    <img src="iaf-logo.png">
-  </div>
-</div>
-
-<section class="hero">
-  <img src="img/pic/Fela.png">
-  <div class="hero-content">
-    <div>
-      <h1>Food-Net Discovery</h1>
-      <p>Explore food around you</p>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-
-  <div class="search-box">
-    <input 
-      type="text" 
-      id="searchInput" 
-      placeholder="Search food..."
-      oninput="filterUnits()"
-    >
-  </div>
-
-  <div class="market-grid" id="market"></div>
-
-</section>
-
+<!DOCTYPE html>    
+<html lang="id">    
+<head>    
+<meta charset="UTF-8">    
+<meta name="viewport" content="width=device-width, initial-scale=1.0">    
+<title>Food-Net</title>    
+    
+<style>    
+*{box-sizing:border-box;}    
+body{    
+  margin:0;    
+  font-family:Arial, Helvetica, sans-serif;    
+  background:#0f0f12;    
+  color:#fff;    
+}    
+    
+/* TOPBAR */    
+.topbar{    
+  position:fixed;    
+  top:0;    
+  left:0;    
+  width:100%;    
+  padding:20px 30px;    
+  display:flex;    
+  justify-content:space-between;    
+  align-items:center;    
+  flex-direction:row-reverse;    
+  z-index:999;    
+}    
+    
+.logo img{    
+  height:40px;    
+  opacity:.9;    
+}    
+    
+/* HERO */    
+.hero{    
+  position:relative;    
+  height:100vh;    
+  overflow:hidden;    
+}    
+.hero img{    
+  position:absolute;    
+  inset:0;    
+  width:100%;    
+  height:100%;    
+  object-fit:cover;    
+  object-position:55% center;    
+  filter:brightness(.85);    
+}    
+.hero::after{    
+  content:"";    
+  position:absolute;    
+  inset:0;    
+  background:linear-gradient(to top,#0f0f12 15%,transparent);    
+}    
+.hero-content{    
+  position:relative;    
+  z-index:2;    
+  height:100%;    
+  display:flex;    
+  flex-direction:column;    
+  justify-content:flex-end;    
+  padding:60px;    
+}    
+.hero h1{    
+  font-size:56px;    
+  margin:0;    
+}    
+.hero p{    
+  color:#aaa;    
+  font-size:18px;    
+}    
+    
+/* SECTION */    
+.section{    
+  padding:80px 60px;    
+  max-width:1200px;    
+  margin:auto;    
+}    
+h2{    
+  margin-bottom:30px;    
+  font-size:28px;    
+}    
+    
+/* GRID 2 COL */    
+.market-grid{    
+  display:grid;    
+  grid-template-columns:repeat(2,1fr);    
+  gap:18px;    
+}    
+    
+/* OPTIONAL DESKTOP */    
+@media(min-width:800px){    
+  .market-grid{    
+    grid-template-columns:repeat(3,1fr);    
+  }    
+}    
+    
+/* CARD */    
+.unit-card{    
+  position:relative;    
+  background:#14141b;    
+  border-radius:20px;    
+  overflow:hidden;    
+  cursor:pointer;    
+  transition:.25s;    
+}    
+.unit-card:hover{    
+  transform:translateY(-6px);    
+}    
+    
+/* IMAGE 1:1 */    
+.unit-img{    
+  width:100%;    
+  aspect-ratio:1/1;    
+  overflow:hidden;    
+  position:relative;    
+}    
+    
+.unit-img img{    
+  position:absolute;    
+  inset:0;    
+  width:100%;    
+  height:100%;    
+  object-fit:cover;    
+}    
+    
+/* OVERLAY */    
+.unit-overlay{    
+  position:absolute;    
+  bottom:0;    
+  left:0;    
+  right:0;    
+  padding:12px;    
+  background:linear-gradient(to top,rgba(0,0,0,.85),transparent);    
+}    
+    
+.unit-overlay h3{    
+  margin:0;    
+  font-size:14px;    
+}    
+    
+.unit-overlay p{    
+  margin:4px 0 0;    
+  color:#aaa;    
+  font-size:12px;    
+}    
+    
+/* MOBILE */    
+@media(max-width:800px){    
+  .section{padding:60px 25px;}    
+  .hero-content{padding:40px 25px;}    
+  .hero h1{font-size:40px;}    
+}    
+    
+.search-box{    
+  margin-bottom:25px;    
+}    
+    
+.search-box input{    
+  width:100%;    
+  padding:14px 18px;    
+  border-radius:12px;    
+  border:none;    
+  background:#1b1b24;    
+  color:white;    
+  font-size:15px;    
+  outline:none;    
+  transition:.2s;    
+}    
+    
+.search-box input:focus{    
+  background:#22222c;    
+}    
+</style>    
+</head>    
+    
+<body>    
+    
+<div class="topbar">    
+  <div class="logo">    
+    <img src="iaf-logo.png">    
+  </div>    
+</div>    
+    
+<!-- HERO -->    
+<section class="hero">    
+  <img src="img/pic/Fela.png">    
+  <div class="hero-content">    
+    <h1>Food-Net Discovery</h1>    
+    <p>Explore food around you</p>    
+  </div>    
+</section>    
+    
+<!-- MARKET -->    
+<section class="section">    
+    
+  <div class="search-box">    
+    <input     
+      type="text"     
+      id="searchInput"     
+      placeholder="Search food / place..."    
+      oninput="filterUnits()"    
+    >    
+  </div>    
+    
+  <h2>Catalog</h2>    
+  <div class="market-grid" id="market"></div>    
+    
+</section>    
+    
 <script>
 let allUnits = [];
 let userLat = null;
 let userLng = null;
 
-/* =========================
-   GPS
-========================= */
+// MINTA GPS
 function requestLocation(){
   navigator.geolocation.getCurrentPosition(
     pos => {
       userLat = pos.coords.latitude;
       userLng = pos.coords.longitude;
-
-      // update UI setelah dapet lokasi
       renderUnits(allUnits);
     },
-    err => {
-      console.warn("GPS gagal:", err);
-    }
+    err => console.warn("GPS gagal:", err)
   );
 }
 
-/* =========================
-   DISTANCE
-========================= */
+// HITUNG JARAK
 function getDistance(lat1, lon1, lat2, lon2){
   const R = 6371;
   const dLat = (lat2-lat1) * Math.PI/180;
   const dLon = (lon2-lon1) * Math.PI/180;
-
   const a =
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.sin(dLat/2)**2 +
     Math.cos(lat1*Math.PI/180) *
     Math.cos(lat2*Math.PI/180) *
-    Math.sin(dLon/2) *
-    Math.sin(dLon/2);
-
+    Math.sin(dLon/2)**2;
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   return R * c;
 }
 
-/* =========================
-   LOAD DATA
-========================= */
+// LOAD DATA
 async function loadCatalog(){
   try{
     const res = await fetch("data.json");
     const data = await res.json();
-
     allUnits = Object.values(data.personnel);
-
     renderUnits(allUnits);
-    requestLocation(); // 🔥 langsung minta GPS
-
+    requestLocation();
   }catch(err){
     console.error(err);
   }
 }
 
-/* =========================
-   RENDER
-========================= */
+// RENDER CARD + JARAK
 function renderUnits(units){
   const market = document.getElementById("market");
   market.innerHTML = "";
-
   units.forEach(fp => {
-
     let distanceText = fp.subtitle || "";
-
     if(userLat && userLng && fp.lat && fp.lng){
       const dist = getDistance(userLat, userLng, fp.lat, fp.lng);
-
-      distanceText = dist < 1
-        ? (dist * 1000).toFixed(0) + " m"
-        : dist.toFixed(1) + " km";
+      distanceText = dist < 1 ? (dist*1000).toFixed(0)+" m" : dist.toFixed(1)+" km";
     }
-
     const card = document.createElement("div");
     card.className = "unit-card";
-
     card.innerHTML = `
       <div class="unit-img">
         <img src="${fp.profile}">
@@ -307,35 +275,24 @@ function renderUnits(units){
         <p>${distanceText}</p>
       </div>
     `;
-
-    card.onclick = ()=>{
-      window.location.href = "Furru.html?id=" + fp.sn;
-    };
-
+    card.onclick = ()=> window.location.href = "Furru.html?id=" + fp.sn;
     market.appendChild(card);
   });
 }
 
-/* =========================
-   SEARCH
-========================= */
+// SEARCH
 function filterUnits(){
-  const keyword = document
-    .getElementById("searchInput")
-    .value
-    .toLowerCase();
-
-  const filtered = allUnits.filter(fp => 
+  const keyword = document.getElementById("searchInput").value.toLowerCase();
+  const filtered = allUnits.filter(fp =>
     fp.name.toLowerCase().includes(keyword) ||
     (fp.model || "").toLowerCase().includes(keyword) ||
     fp.sn.toLowerCase().includes(keyword)
   );
-
   renderUnits(filtered);
 }
 
 loadCatalog();
-</script>
+</script>    
 
-</body>
+</body>    
 </html>
