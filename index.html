@@ -14,6 +14,41 @@ body{
   color:#fff;
 }
 
+/* TOS */
+.tos-screen{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.9);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.tos-box{
+  background:#14141b;
+  padding:25px;
+  border-radius:16px;
+  max-width:400px;
+  text-align:center;
+}
+
+.tos-box p{
+  color:#aaa;
+  font-size:14px;
+}
+
+.tos-box button{
+  margin-top:15px;
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  background:#fff;
+  color:#000;
+  font-weight:bold;
+  cursor:pointer;
+}
+
 /* TOPBAR */
 .topbar{
   position:fixed;
@@ -30,14 +65,12 @@ body{
 
 .logo img{
   height:40px;
-  opacity:.9;
 }
 
 /* HERO */
 .hero{
   position:relative;
   height:100vh;
-  overflow:hidden;
 }
 .hero img{
   position:absolute;
@@ -45,7 +78,6 @@ body{
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:55% center;
   filter:brightness(.85);
 }
 .hero::after{
@@ -59,18 +91,11 @@ body{
   z-index:2;
   height:100%;
   display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
+  align-items:flex-end;
   padding:60px;
 }
-.hero h1{
-  font-size:56px;
-  margin:0;
-}
-.hero p{
-  color:#aaa;
-  font-size:18px;
-}
+.hero h1{font-size:56px;margin:0;}
+.hero p{color:#aaa;}
 
 /* SECTION */
 .section{
@@ -78,19 +103,14 @@ body{
   max-width:1200px;
   margin:auto;
 }
-h2{
-  margin-bottom:30px;
-  font-size:28px;
-}
 
-/* GRID 2 COL */
+/* GRID */
 .market-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:18px;
 }
 
-/* OPTIONAL DESKTOP */
 @media(min-width:800px){
   .market-grid{
     grid-template-columns:repeat(3,1fr);
@@ -106,27 +126,23 @@ h2{
   cursor:pointer;
   transition:.25s;
 }
+
 .unit-card:hover{
   transform:translateY(-6px);
 }
 
-/* IMAGE 1:1 */
 .unit-img{
   width:100%;
   aspect-ratio:1/1;
   overflow:hidden;
-  position:relative;
 }
 
 .unit-img img{
-  position:absolute;
-  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-/* OVERLAY */
 .unit-overlay{
   position:absolute;
   bottom:0;
@@ -136,23 +152,8 @@ h2{
   background:linear-gradient(to top,rgba(0,0,0,.85),transparent);
 }
 
-.unit-overlay h3{
-  margin:0;
-  font-size:14px;
-}
-
-.unit-overlay p{
-  margin:4px 0 0;
-  color:#aaa;
-  font-size:12px;
-}
-
-/* MOBILE */
-@media(max-width:800px){
-  .section{padding:60px 25px;}
-  .hero-content{padding:40px 25px;}
-  .hero h1{font-size:40px;}
-}
+.unit-overlay h3{margin:0;font-size:14px;}
+.unit-overlay p{font-size:12px;color:#aaa;}
 
 .search-box{
   margin-bottom:25px;
@@ -160,23 +161,29 @@ h2{
 
 .search-box input{
   width:100%;
-  padding:14px 18px;
+  padding:14px;
   border-radius:12px;
   border:none;
   background:#1b1b24;
   color:white;
-  font-size:15px;
-  outline:none;
-  transition:.2s;
-}
-
-.search-box input:focus{
-  background:#22222c;
 }
 </style>
 </head>
 
 <body>
+
+<!-- TOS -->
+<div id="tos-screen" class="tos-screen">
+  <div class="tos-box">
+    <h2>Food-Net Terms</h2>
+    <p>
+      Kami akan mengumpulkan data berupa interaksi dan lokasi selama anda berada di dalam website ini.
+      Kami tidak akan mengumpulkan data pribadi dan data yang anda berikan akan membantu proses development
+      dan pembiayaan proyek lainnya dari kami.
+    </p>
+    <button onclick="acceptTOS()">Accept & Continue</button>
+  </div>
+</div>
 
 <div class="topbar">
   <div class="logo">
@@ -184,35 +191,69 @@ h2{
   </div>
 </div>
 
-<!-- HERO -->
 <section class="hero">
   <img src="img/pic/Fela.png">
   <div class="hero-content">
-    <h1>Food-Net Discovery</h1>
-    <p>Explore food around you</p>
+    <div>
+      <h1>Food-Net Discovery</h1>
+      <p>Explore food around you</p>
+    </div>
   </div>
 </section>
 
-<!-- MARKET -->
 <section class="section">
 
   <div class="search-box">
     <input 
       type="text" 
       id="searchInput" 
-      placeholder="Search food / place..."
+      placeholder="Search food..."
       oninput="filterUnits()"
     >
   </div>
 
-  <h2>Catalog</h2>
   <div class="market-grid" id="market"></div>
 
 </section>
 
 <script>
 let allUnits = [];
+let userLat = null;
+let userLng = null;
 
+/* =========================
+   TOS
+========================= */
+function acceptTOS(){
+  localStorage.setItem("tosAccepted","yes");
+  document.getElementById("tos-screen").style.display = "none";
+  requestLocation();
+}
+
+if(localStorage.getItem("tosAccepted") === "yes"){
+  document.getElementById("tos-screen").style.display = "none";
+  requestLocation();
+}
+
+/* =========================
+   GPS
+========================= */
+function requestLocation(){
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      userLat = pos.coords.latitude;
+      userLng = pos.coords.longitude;
+      console.log("GPS:", userLat, userLng);
+    },
+    err => {
+      console.warn("GPS gagal:", err);
+    }
+  );
+}
+
+/* =========================
+   LOAD DATA
+========================= */
 async function loadCatalog(){
   try{
     const res = await fetch("data.json");
@@ -226,6 +267,9 @@ async function loadCatalog(){
   }
 }
 
+/* =========================
+   RENDER
+========================= */
 function renderUnits(units){
   const market = document.getElementById("market");
   market.innerHTML = "";
@@ -245,14 +289,13 @@ function renderUnits(units){
       </div>
     `;
 
-    card.onclick = ()=>{
-      window.location.href = "Furru.html?id=" + fp.sn;
-    };
-
     market.appendChild(card);
   });
 }
 
+/* =========================
+   SEARCH
+========================= */
 function filterUnits(){
   const keyword = document
     .getElementById("searchInput")
@@ -260,9 +303,7 @@ function filterUnits(){
     .toLowerCase();
 
   const filtered = allUnits.filter(fp => 
-    fp.name.toLowerCase().includes(keyword) ||
-    (fp.model || "").toLowerCase().includes(keyword) ||
-    fp.sn.toLowerCase().includes(keyword)
+    fp.name.toLowerCase().includes(keyword)
   );
 
   renderUnits(filtered);
