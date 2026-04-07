@@ -222,20 +222,6 @@ let userLat = null;
 let userLng = null;
 
 /* =========================
-   TOS
-========================= */
-function acceptTOS(){
-  localStorage.setItem("tosAccepted","yes");
-  document.getElementById("tos-screen").style.display = "none";
-  requestLocation();
-}
-
-if(localStorage.getItem("tosAccepted") === "yes"){
-  document.getElementById("tos-screen").style.display = "none";
-  requestLocation();
-}
-
-/* =========================
    GPS
 ========================= */
 function requestLocation(){
@@ -243,12 +229,33 @@ function requestLocation(){
     pos => {
       userLat = pos.coords.latitude;
       userLng = pos.coords.longitude;
-      console.log("GPS:", userLat, userLng);
+
+      // update UI setelah dapet lokasi
+      renderUnits(allUnits);
     },
     err => {
       console.warn("GPS gagal:", err);
     }
   );
+}
+
+/* =========================
+   DISTANCE
+========================= */
+function getDistance(lat1, lon1, lat2, lon2){
+  const R = 6371;
+  const dLat = (lat2-lat1) * Math.PI/180;
+  const dLon = (lon2-lon1) * Math.PI/180;
+
+  const a =
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1*Math.PI/180) *
+    Math.cos(lat2*Math.PI/180) *
+    Math.sin(dLon/2) *
+    Math.sin(dLon/2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
 }
 
 /* =========================
@@ -260,7 +267,9 @@ async function loadCatalog(){
     const data = await res.json();
 
     allUnits = Object.values(data.personnel);
+
     renderUnits(allUnits);
+    requestLocation(); // 🔥 langsung minta GPS
 
   }catch(err){
     console.error(err);
@@ -276,6 +285,16 @@ function renderUnits(units){
 
   units.forEach(fp => {
 
+    let distanceText = fp.subtitle || "";
+
+    if(userLat && userLng && fp.lat && fp.lng){
+      const dist = getDistance(userLat, userLng, fp.lat, fp.lng);
+
+      distanceText = dist < 1
+        ? (dist * 1000).toFixed(0) + " m"
+        : dist.toFixed(1) + " km";
+    }
+
     const card = document.createElement("div");
     card.className = "unit-card";
 
@@ -285,9 +304,13 @@ function renderUnits(units){
       </div>
       <div class="unit-overlay">
         <h3>${fp.name}</h3>
-        <p>${fp.subtitle || ""}</p>
+        <p>${distanceText}</p>
       </div>
     `;
+
+    card.onclick = ()=>{
+      window.location.href = "Furru.html?id=" + fp.sn;
+    };
 
     market.appendChild(card);
   });
@@ -303,7 +326,9 @@ function filterUnits(){
     .toLowerCase();
 
   const filtered = allUnits.filter(fp => 
-    fp.name.toLowerCase().includes(keyword)
+    fp.name.toLowerCase().includes(keyword) ||
+    (fp.model || "").toLowerCase().includes(keyword) ||
+    fp.sn.toLowerCase().includes(keyword)
   );
 
   renderUnits(filtered);
