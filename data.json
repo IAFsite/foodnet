@@ -28,13 +28,13 @@
     },
 
     "FD002": {
-      "name": "Ayam Geprek Chaos",
+      "name": "Food Lab",
       "sn": "FD002",
       "tier": "premium",
       "verified": true,
 
-      "profile": "img/alpha.png",
-      "banner": "img/fela.png",
+      "profile": "img/foodlab/p.png",
+      "banner": "img/foodlab/p.png",
 
       "gallery": [
         "img/deu.png",
@@ -42,15 +42,59 @@
         "img/cebol.png"
       ],
 
-      "description": "Ayam geprek pedas level neraka 🔥",
+      "description": "Food lab adalah kantin yang menjual aneka gorengan dan minuman untuk murid SM sasi",
+      
+      "address": "Jl. Raya Hankam No.99, RT.004/RW.08,",
+      "openHours": "10:00 - 13:00",
+      "category": "Kopi",
+      "priceRange": "Rp5k - Rp20k",
 
-      "address": "Jl. Api Neraka No.666",
-      "openHours": "11:00 - 23:59",
-      "category": "Ayam Geprek",
-      "priceRange": "Rp15k - Rp35k",
+      "lat": -6.338923597971662,
+      "lng": 106.92308659627825
+    },
+    
+      "FD003": {
+      "name": "cake",
+      "sn": "FD003",
+      "tier": "free",
+      "verified": false,
 
-      "lat": -6.201234,
-      "lng": 106.817890
+      "profile": "img/cake/p.png",
+      "banner": "",
+
+      "gallery": [],
+
+      "description": "cake adalah kantin di sekolah alam bekasi yang menyediakan aneka macam makanan mulai dari gorengan hingga jelly dengan harga yang terjangkau",
+      
+      "address": "Jl. Raya Hankam No.99, RT.004/RW.08,",
+      "openHours": "10:00 - 13:00",
+      "category": "Kopi",
+      "priceRange": "Rp5k - Rp20k",
+
+      "lat": -6.338923597971662,
+      "lng": 106.92308659627825
+    },
+
+          "FD004": {
+      "name": "kurma kalimantan",
+      "sn": "FD004",
+      "tier": "premium",
+      "verified": true,
+
+      "profile": "img/kormakalimantan/p.png",
+      "banner": "img/kormakalimantan/p.png",
+
+      "gallery": ["img/kormakalimantan/p.png","img/kormakalimantan/1.png"],
+
+      "description": "korma kalimantan adalah kurma asli kalimantan yang di bawa langsung ke jawa dan haha apaan sih ini apan sih gajelas bet ",
+      
+      "address": "",
+      "openHours": "10:00 - 13:00",
+      "category": "Kopi",
+      "priceRange": "Rp0Rp - 200.000.000Rp",
+
+      "lat": -6.33990844531439,
+      "lng": 107.04781630434384
     }
 
   }
