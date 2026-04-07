@@ -1,221 +1,248 @@
-<!DOCTYPE html>    
-<html lang="id">    
-<head>    
-<meta charset="UTF-8">    
-<meta name="viewport" content="width=device-width, initial-scale=1.0">    
-<title>Food-Net</title>    
-    
-<style>    
-*{box-sizing:border-box;}    
-body{    
-  margin:0;    
-  font-family:Arial, Helvetica, sans-serif;    
-  background:#0f0f12;    
-  color:#fff;    
-}    
-    
-/* TOPBAR */    
-.topbar{    
-  position:fixed;    
-  top:0;    
-  left:0;    
-  width:100%;    
-  padding:20px 30px;    
-  display:flex;    
-  justify-content:space-between;    
-  align-items:center;    
-  flex-direction:row-reverse;    
-  z-index:999;    
-}    
-    
-.logo img{    
-  height:40px;    
-  opacity:.9;    
-}    
-    
-/* HERO */    
-.hero{    
-  position:relative;    
-  height:100vh;    
-  overflow:hidden;    
-}    
-.hero img{    
-  position:absolute;    
-  inset:0;    
-  width:100%;    
-  height:100%;    
-  object-fit:cover;    
-  object-position:55% center;    
-  filter:brightness(.85);    
-}    
-.hero::after{    
-  content:"";    
-  position:absolute;    
-  inset:0;    
-  background:linear-gradient(to top,#0f0f12 15%,transparent);    
-}    
-.hero-content{    
-  position:relative;    
-  z-index:2;    
-  height:100%;    
-  display:flex;    
-  flex-direction:column;    
-  justify-content:flex-end;    
-  padding:60px;    
-}    
-.hero h1{    
-  font-size:56px;    
-  margin:0;    
-}    
-.hero p{    
-  color:#aaa;    
-  font-size:18px;    
-}    
-    
-/* SECTION */    
-.section{    
-  padding:80px 60px;    
-  max-width:1200px;    
-  margin:auto;    
-}    
-h2{    
-  margin-bottom:30px;    
-  font-size:28px;    
-}    
-    
-/* GRID 2 COL */    
-.market-grid{    
-  display:grid;    
-  grid-template-columns:repeat(2,1fr);    
-  gap:18px;    
-}    
-    
-/* OPTIONAL DESKTOP */    
-@media(min-width:800px){    
-  .market-grid{    
-    grid-template-columns:repeat(3,1fr);    
-  }    
-}    
-    
-/* CARD */    
-.unit-card{    
-  position:relative;    
-  background:#14141b;    
-  border-radius:20px;    
-  overflow:hidden;    
-  cursor:pointer;    
-  transition:.25s;    
-}    
-.unit-card:hover{    
-  transform:translateY(-6px);    
-}    
-    
-/* IMAGE 1:1 */    
-.unit-img{    
-  width:100%;    
-  aspect-ratio:1/1;    
-  overflow:hidden;    
-  position:relative;    
-}    
-    
-.unit-img img{    
-  position:absolute;    
-  inset:0;    
-  width:100%;    
-  height:100%;    
-  object-fit:cover;    
-}    
-    
-/* OVERLAY */    
-.unit-overlay{    
-  position:absolute;    
-  bottom:0;    
-  left:0;    
-  right:0;    
-  padding:12px;    
-  background:linear-gradient(to top,rgba(0,0,0,.85),transparent);    
-}    
-    
-.unit-overlay h3{    
-  margin:0;    
-  font-size:14px;    
-}    
-    
-.unit-overlay p{    
-  margin:4px 0 0;    
-  color:#aaa;    
-  font-size:12px;    
-}    
-    
-/* MOBILE */    
-@media(max-width:800px){    
-  .section{padding:60px 25px;}    
-  .hero-content{padding:40px 25px;}    
-  .hero h1{font-size:40px;}    
-}    
-    
-.search-box{    
-  margin-bottom:25px;    
-}    
-    
-.search-box input{    
-  width:100%;    
-  padding:14px 18px;    
-  border-radius:12px;    
-  border:none;    
-  background:#1b1b24;    
-  color:white;    
-  font-size:15px;    
-  outline:none;    
-  transition:.2s;    
-}    
-    
-.search-box input:focus{    
-  background:#22222c;    
-}    
-</style>    
-</head>    
-    
-<body>    
-    
-<div class="topbar">    
-  <div class="logo">    
-    <img src="iaf-logo.png">    
-  </div>    
-</div>    
-    
-<!-- HERO -->    
-<section class="hero">    
-  <img src="img/fela.png">    
-  <div class="hero-content">    
-    <h1>Food-Net Discovery</h1>    
-    <p>Explore food around you</p>    
-  </div>    
-</section>    
-    
-<!-- MARKET -->    
-<section class="section">    
-    
-  <div class="search-box">    
-    <input     
-      type="text"     
-      id="searchInput"     
-      placeholder="Search food / place..."    
-      oninput="filterUnits()"    
-    >    
-  </div>    
-    
-  <h2>Catalog</h2>    
-  <div class="market-grid" id="market"></div>    
-    
-</section>    
-    
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food-Net</title>
+
+<style>
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#0f0f12;
+  color:#fff;
+}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:18px 25px;
+  display:flex;
+  justify-content:flex-end;
+  z-index:1000;
+  background:linear-gradient(to bottom, rgba(0,0,0,.6), transparent);
+  backdrop-filter:blur(6px);
+}
+
+.logo img{
+  height:36px;
+  opacity:.9;
+}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  height:85vh;
+  overflow:hidden;
+}
+
+.hero img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.85);
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,#0f0f12 10%,transparent);
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:50px;
+}
+
+.hero h1{
+  font-size:48px;
+  margin:0;
+}
+
+.hero p{
+  color:#aaa;
+  font-size:16px;
+}
+
+/* ===== SECTION ===== */
+.section{
+  padding:70px 25px;
+  max-width:1200px;
+  margin:auto;
+}
+
+h2{
+  margin-bottom:25px;
+  font-size:24px;
+}
+
+/* ===== SEARCH ===== */
+.search-box{
+  margin-bottom:20px;
+}
+
+.search-box input{
+  width:100%;
+  padding:14px 16px;
+  border-radius:12px;
+  border:none;
+  background:#1b1b24;
+  color:white;
+  outline:none;
+  font-size:14px;
+}
+
+.search-box input:focus{
+  background:#22222c;
+}
+
+/* ===== GRID ===== */
+.market-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+@media(min-width:800px){
+  .market-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+/* ===== CARD ===== */
+.unit-card{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  background:#14141b;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.unit-card:hover{
+  transform:translateY(-6px);
+}
+
+/* PREMIUM */
+.unit-card.premium{
+  outline:2px solid rgba(255,215,0,.4);
+  box-shadow:0 0 18px rgba(255,215,0,.15);
+}
+
+/* IMAGE */
+.unit-img{
+  aspect-ratio:1/1;
+}
+
+.unit-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.3s;
+}
+
+.unit-card:hover img{
+  transform:scale(1.07);
+}
+
+/* OVERLAY */
+.unit-overlay{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:12px;
+  background:linear-gradient(to top,rgba(0,0,0,.9),transparent);
+}
+
+/* TEXT */
+.unit-overlay h3{
+  margin:0;
+  font-size:14px;
+}
+
+.unit-overlay p{
+  margin:4px 0 0;
+  font-size:12px;
+  color:#aaa;
+}
+
+/* BADGE */
+.badge{
+  font-size:10px;
+  padding:2px 6px;
+  border-radius:6px;
+  margin-left:6px;
+}
+
+.verified{
+  background:#2ecc71;
+}
+
+.premium-badge{
+  background:gold;
+  color:black;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .hero-content{padding:30px;}
+  .hero h1{font-size:34px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="logo">
+    <img src="iaf-logo.png">
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="img/hero.png">
+  <div class="hero-content">
+    <h1>Food-Net Discovery</h1>
+    <p>Explore food around you</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="section">
+
+  <div class="search-box">
+    <input type="text" id="searchInput"
+      placeholder="Search food / place..."
+      oninput="filterUnits()">
+  </div>
+
+  <h2>Catalog</h2>
+  <div class="market-grid" id="market"></div>
+
+</section>
+
 <script>
 let allUnits = [];
 let userLat = null;
 let userLng = null;
 
-// MINTA GPS
+/* ===== LOCATION ===== */
 function requestLocation(){
   navigator.geolocation.getCurrentPosition(
     pos => {
@@ -227,7 +254,7 @@ function requestLocation(){
   );
 }
 
-// HITUNG JARAK
+/* ===== DISTANCE ===== */
 function getDistance(lat1, lon1, lat2, lon2){
   const R = 6371;
   const dLat = (lat2-lat1) * Math.PI/180;
@@ -241,58 +268,77 @@ function getDistance(lat1, lon1, lat2, lon2){
   return R * c;
 }
 
-// LOAD DATA
+/* ===== LOAD ===== */
 async function loadCatalog(){
-  try{
-    const res = await fetch("data.json");
-    const data = await res.json();
-    allUnits = Object.values(data.personnel);
-    renderUnits(allUnits);
-    requestLocation();
-  }catch(err){
-    console.error(err);
-  }
+  const res = await fetch("data.json");
+  const data = await res.json();
+  allUnits = Object.values(data.personnel);
+  renderUnits(allUnits);
+  requestLocation();
 }
 
-// RENDER CARD + JARAK
+/* ===== RENDER ===== */
 function renderUnits(units){
+
   const market = document.getElementById("market");
   market.innerHTML = "";
+
+  // sort premium dulu
+  units.sort((a,b)=>{
+    if(a.tier==="premium" && b.tier!=="premium") return -1;
+    if(a.tier!=="premium" && b.tier==="premium") return 1;
+    return 0;
+  });
+
   units.forEach(fp => {
+
     let distanceText = fp.subtitle || "";
+
     if(userLat && userLng && fp.lat && fp.lng){
-      const dist = getDistance(userLat, userLng, fp.lat, fp.lng);
-      distanceText = dist < 1 ? (dist*1000).toFixed(0)+" m" : dist.toFixed(1)+" km";
+      const dist = getDistance(userLat,userLng,fp.lat,fp.lng);
+      distanceText = dist < 1
+        ? (dist*1000).toFixed(0)+" m"
+        : dist.toFixed(1)+" km";
     }
+
     const card = document.createElement("div");
-    card.className = "unit-card";
+    card.className = "unit-card " + (fp.tier==="premium" ? "premium" : "");
+
     card.innerHTML = `
       <div class="unit-img">
         <img src="${fp.profile}">
       </div>
+
       <div class="unit-overlay">
-        <h3>${fp.name}</h3>
+        <h3>
+          ${fp.name}
+          ${fp.verified ? `<span class="badge verified">✔</span>` : ""}
+          ${fp.tier==="premium" ? `<span class="badge premium-badge">PRO</span>` : ""}
+        </h3>
         <p>${distanceText}</p>
       </div>
     `;
-    card.onclick = ()=> window.location.href = "Furru.html?id=" + fp.sn;
+
+    card.onclick = ()=> window.location.href = "toko.html?id=" + fp.sn;
+
     market.appendChild(card);
   });
 }
 
-// SEARCH
+/* ===== SEARCH ===== */
 function filterUnits(){
   const keyword = document.getElementById("searchInput").value.toLowerCase();
+
   const filtered = allUnits.filter(fp =>
     fp.name.toLowerCase().includes(keyword) ||
-    (fp.model || "").toLowerCase().includes(keyword) ||
     fp.sn.toLowerCase().includes(keyword)
   );
+
   renderUnits(filtered);
 }
 
 loadCatalog();
-</script>    
+</script>
 
-</body>    
+</body>
 </html>

@@ -1,55 +1,57 @@
 {
   "personnel": {
-    "FD001": {"name":"Bakso Pak Budi","sn":"FD001","profile":"img/deu.png","subtitle":"loading location data","lat":-6.200123,"lng":106.816789},
-    "FD002": {"name":"Ayam Geprek Chaos","sn":"FD002","profile":"img/alpha.png","subtitle":"loading location data","lat":-6.201234,"lng":106.817890},
-    "FD003": {"name":"Es Teh Nusantara","sn":"FD003","profile":"img/cebol.png","subtitle":"loading location data","lat":-6.199876,"lng":106.815678},
-    "FD004": {"name":"Nasi Goreng Pelangi","sn":"FD004","profile":"img/felo.png","subtitle":"loading location data","lat":-6.200987,"lng":106.818345},
-    "FD005": {"name":"Roti Bakar Galaksi","sn":"FD005","profile":"img/fela.png","subtitle":"loading location data","lat":-6.198765,"lng":106.814567},
-    "FD006": {"name":"Sate Taichan Turbo","sn":"FD006","profile":"img/deu.png","subtitle":"loading location data","lat":-6.201111,"lng":106.816999},
-    "FD007": {"name":"Mie Ayam Supernova","sn":"FD007","profile":"img/alpha.png","subtitle":"loading location data","lat":-6.199432,"lng":106.817123},
-    "FD008": {"name":"Martabak Keju Badai","sn":"FD008","profile":"img/cebol.png","subtitle":"loading location data","lat":-6.200654,"lng":106.818567},
-    "FD009": {"name":"Es Campur Peluit","sn":"FD009","profile":"img/felo.png","subtitle":"loading location data","lat":-6.198876,"lng":106.815432},
-    "FD010": {"name":"Nasi Uduk Meteor","sn":"FD010","profile":"img/fela.png","subtitle":"loading location data","lat":-6.201987,"lng":106.816345},
-    "FD011": {"name":"Bubur Ayam Galaxy","sn":"FD011","profile":"img/deu.png","subtitle":"loading location data","lat":-6.199234,"lng":106.817654},
-    "FD012": {"name":"Sop Buntut Comet","sn":"FD012","profile":"img/alpha.png","subtitle":"loading location data","lat":-6.200345,"lng":106.815987},
-    "FD013": {"name":"Kebab Turki Meteor","sn":"FD013","profile":"img/cebol.png","subtitle":"loading location data","lat":-6.198543,"lng":106.816876},
-    "FD014": {"name":"Pempek Planet","sn":"FD014","profile":"img/felo.png","subtitle":"loading location data","lat":-6.201234,"lng":106.817543},
-    "FD015": {"name":"Bakpia Nebula","sn":"FD015","profile":"img/fela.png","subtitle":"loading location data","lat":-6.200876,"lng":106.815654},
-    "FD016": {"name":"Ayam Bakar Aurora","sn":"FD016","profile":"img/deu.png","subtitle":"loading location data","lat":-6.199987,"lng":106.816432},
-    "FD017": {"name":"Es Krim Orion","sn":"FD017","profile":"img/alpha.png","subtitle":"loading location data","lat":-6.200123,"lng":106.817876},
-    "FD018": {"name":"Nasi Campur Quantum","sn":"FD018","profile":"img/cebol.png","subtitle":"loading location data","lat":-6.201345,"lng":106.815765},
-    "FD019": {"name":"Rujak Cosmos","sn":"FD019","profile":"img/felo.png","subtitle":"loading location data","lat":-6.198987,"lng":106.816543},
-    "FD020": {"name":"Cilok Galaxy","sn":"FD020","profile":"img/fela.png","subtitle":"loading location data","lat":-6.200765,"lng":106.817234},
-    "FD021": {"name":"Soto Meteor","sn":"FD021","profile":"img/deu.png","subtitle":"loading location data","lat":-6.199876,"lng":106.815987},
-    "FD022": {"name":"Es Doger Supernova","sn":"FD022","profile":"img/alpha.png","subtitle":"loading location data","lat":-6.201234,"lng":106.816543},
-    "FD023": {"name":"Kwetiau Comet","sn":"FD023","profile":"img/cebol.png","subtitle":"loading location data","lat":-6.200345,"lng":106.817654},
-    "FD024": {"name":"Roti John Nebula","sn":"FD024","profile":"img/felo.png","subtitle":"loading location data","lat":-6.199543,"lng":106.815432},
-    "FD025": {"name":"Bakso Ajaib Aurora","sn":"FD025","profile":"img/fela.png","subtitle":"loading location data","lat":-6.201987,"lng":106.816876},
-    "FD026": {"name":"Ayam Goreng Comet","sn":"FD026","profile":"img/deu.png","subtitle":"loading location data","lat":-6.198654,"lng":106.817123},
-    "FD027": {"name":"Martabak Pelangi","sn":"FD027","profile":"img/alpha.png","subtitle":"loading location data","lat":-6.200234,"lng":106.815876},
-    "FD028": {"name":"Es Kelapa Nebula","sn":"FD028","profile":"img/cebol.png","subtitle":"loading location data","lat":-6.201543,"lng":106.816432},
-    "FD029": {"name":"Nasi Goreng Meteor","sn":"FD029","profile":"img/felo.png","subtitle":"loading location data","lat":-6.199876,"lng":106.817543},
-    "FD030": {"name":"Roti Bakar Orion","sn":"FD030","profile":"img/fela.png","subtitle":"loading location data","lat":-6.200432,"lng":106.815987},
-    "FD031": {"name":"Sate Taichan Aurora","sn":"FD031","profile":"img/deu.png","subtitle":"loading location data","lat":-6.201234,"lng":106.816765},
-    "FD032": {"name":"Mie Ayam Galaxy","sn":"FD032","profile":"img/alpha.png","subtitle":"loading location data","lat":-6.199543,"lng":106.817234},
-    "FD033": {"name":"Pempek Supernova","sn":"FD033","profile":"img/cebol.png","subtitle":"loading location data","lat":-6.200987,"lng":106.815654},
-    "FD034": {"name":"Bakpia Comet","sn":"FD034","profile":"img/felo.png","subtitle":"loading location data","lat":-6.198765,"lng":106.816543},
-    "FD035": {"name":"Ayam Bakar Orion","sn":"FD035","profile":"img/fela.png","subtitle":"loading location data","lat":-6.200123,"lng":106.817876},
-    "FD036": {"name":"Es Krim Galaxy","sn":"FD036","profile":"img/deu.png","subtitle":"loading location data","lat":-6.201234,"lng":106.815987},
-    "FD037": {"name":"Nasi Campur Aurora","sn":"FD037","profile":"img/alpha.png","subtitle":"loading location data","lat":-6.199876,"lng":106.816543},
-    "FD038": {"name":"Rujak Meteor","sn":"FD038","profile":"img/cebol.png","subtitle":"loading location data","lat":-6.200345,"lng":106.817654},
-    "FD039": {"name":"Cilok Nebula","sn":"FD039","profile":"img/felo.png","subtitle":"loading location data","lat":-6.198987,"lng":106.815432},
-    "FD040": {"name":"Soto Galaxy","sn":"FD040","profile":"img/fela.png","subtitle":"loading location data","lat":-6.201543,"lng":106.816876},
-    "FD041": {"name":"Es Doger Aurora","sn":"FD041","profile":"img/deu.png","subtitle":"loading location data","lat":-6.199543,"lng":106.817123},
-    "FD042": {"name":"Kwetiau Nebula","sn":"FD042","profile":"img/alpha.png","subtitle":"loading location data","lat":-6.200234,"lng":106.815654},
-    "FD043": {"name":"Roti John Meteor","sn":"FD043","profile":"img/cebol.png","subtitle":"loading location data","lat":-6.201234,"lng":106.816432},
-    "FD044": {"name":"Bakso Pelangi","sn":"FD044","profile":"img/felo.png","subtitle":"loading location data","lat":-6.199876,"lng":106.817543},
-    "FD045": {"name":"Ayam Goreng Orion","sn":"FD045","profile":"img/fela.png","subtitle":"loading location data","lat":-6.200432,"lng":106.815987},
-    "FD046": {"name":"Martabak Galaxy","sn":"FD046","profile":"img/deu.png","subtitle":"loading location data","lat":-6.201234,"lng":106.816765},
-    "FD047": {"name":"Es Kelapa Aurora","sn":"FD047","profile":"img/alpha.png","subtitle":"loading location data","lat":-6.199543,"lng":106.817234},
-    "FD048": {"name":"Nasi Goreng Nebula","sn":"FD048","profile":"img/cebol.png","subtitle":"loading location data","lat":-6.200987,"lng":106.815654},
-    "FD049": {"name":"Roti Bakar Comet","sn":"FD049","profile":"img/felo.png","subtitle":"loading location data","lat":-6.198765,"lng":106.816543},
-    "FD050": {"name":"Sate Taichan Galaxy","sn":"FD050","profile":"img/fela.png","subtitle":"loading location data","lat":-6.200123,"lng":106.817876}
+
+    "FD001": {
+      "name": "Kopi Pejabat",
+      "sn": "FD001",
+      "tier": "premium",
+      "verified": false,
+
+      "profile": "img/kopipejabat/p.png",
+      "banner": "img/kopipejabat/b.png",
+
+      "gallery": [
+        "img/kopipejabat/1.png",
+        "img/kopipejabat/2.png",
+        "img/kopipejabat/3.png"
+      ],
+
+      "description": "Kopi bejabat adalah kopi yange terbuat dari biji kopi langsung dari petani di jawa barat",
+
+      "address": "Jl. Raya Hankam No.99, RT.004/RW.08,",
+      "openHours": "10:00 - 13:00",
+      "category": "Kopi",
+      "priceRange": "Rp10k - Rp45k",
+
+      "lat": -6.338923597971662,
+      "lng": 106.92308659627825
+    },
+
+    "FD002": {
+      "name": "Ayam Geprek Chaos",
+      "sn": "FD002",
+      "tier": "premium",
+      "verified": true,
+
+      "profile": "img/alpha.png",
+      "banner": "img/fela.png",
+
+      "gallery": [
+        "img/deu.png",
+        "img/alpha.png",
+        "img/cebol.png"
+      ],
+
+      "description": "Ayam geprek pedas level neraka 🔥",
+
+      "address": "Jl. Api Neraka No.666",
+      "openHours": "11:00 - 23:59",
+      "category": "Ayam Geprek",
+      "priceRange": "Rp15k - Rp35k",
+
+      "lat": -6.201234,
+      "lng": 106.817890
+    }
+
   }
 }
-
