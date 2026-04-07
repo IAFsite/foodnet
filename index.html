@@ -10,7 +10,7 @@
 body{
   margin:0;
   font-family:Arial, Helvetica, sans-serif;
-  background:#0b0b0e;
+  background:#0f0f12;
   color:#fff;
 }
 
@@ -20,79 +20,78 @@ body{
   top:0;
   left:0;
   width:100%;
-  padding:16px 24px;
+  padding:20px 30px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  flex-direction:row-reverse;
   z-index:999;
-  backdrop-filter:blur(10px);
-  background:rgba(10,10,14,0.6);
-}
-
-.brand{
-  font-weight:bold;
-  font-size:18px;
 }
 
 .logo img{
-  height:36px;
+  height:40px;
   opacity:.9;
 }
 
 /* HERO */
 .hero{
-  height:85vh;
-  display:flex;
-  align-items:flex-end;
-  padding:60px 24px;
-  background:linear-gradient(to top,#0b0b0e,transparent), url('img/pic/Fela.png');
-  background-size:cover;
-  background-position:center;
+  position:relative;
+  height:100vh;
+  overflow:hidden;
 }
-
-.hero-content h1{
-  font-size:42px;
+.hero img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:55% center;
+  filter:brightness(.85);
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,#0f0f12 15%,transparent);
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:60px;
+}
+.hero h1{
+  font-size:56px;
   margin:0;
 }
-
-.hero-content p{
+.hero p{
   color:#aaa;
-  margin-top:10px;
+  font-size:18px;
 }
 
 /* SECTION */
 .section{
-  padding:60px 20px;
-  max-width:1100px;
+  padding:80px 60px;
+  max-width:1200px;
   margin:auto;
 }
-
 h2{
-  margin-bottom:20px;
+  margin-bottom:30px;
+  font-size:28px;
 }
 
-/* SEARCH */
-.search-box{
-  margin-bottom:20px;
-}
-
-.search-box input{
-  width:100%;
-  padding:12px 16px;
-  border-radius:10px;
-  border:none;
-  background:#17171d;
-  color:white;
-}
-
-/* GRID */
+/* GRID 2 COL */
 .market-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:16px;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
 }
 
-@media(max-width:600px){
+/* OPTIONAL DESKTOP */
+@media(min-width:800px){
   .market-grid{
     grid-template-columns:repeat(3,1fr);
   }
@@ -100,43 +99,79 @@ h2{
 
 /* CARD */
 .unit-card{
+  position:relative;
   background:#14141b;
-  border-radius:16px;
-  padding:10px;
+  border-radius:20px;
+  overflow:hidden;
   cursor:pointer;
-  transition:.2s;
+  transition:.25s;
 }
-
 .unit-card:hover{
-  transform:translateY(-4px);
+  transform:translateY(-6px);
 }
 
+/* IMAGE 1:1 */
 .unit-img{
   width:100%;
   aspect-ratio:1/1;
-  border-radius:12px;
   overflow:hidden;
+  position:relative;
 }
 
 .unit-img img{
+  position:absolute;
+  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-.unit-info{
-  margin-top:8px;
+/* OVERLAY */
+.unit-overlay{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:12px;
+  background:linear-gradient(to top,rgba(0,0,0,.85),transparent);
 }
 
-.unit-info h3{
+.unit-overlay h3{
   margin:0;
   font-size:14px;
 }
 
-.unit-info p{
-  margin:2px 0 0;
-  font-size:12px;
+.unit-overlay p{
+  margin:4px 0 0;
   color:#aaa;
+  font-size:12px;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+  .section{padding:60px 25px;}
+  .hero-content{padding:40px 25px;}
+  .hero h1{font-size:40px;}
+}
+
+.search-box{
+  margin-bottom:25px;
+}
+
+.search-box input{
+  width:100%;
+  padding:14px 18px;
+  border-radius:12px;
+  border:none;
+  background:#1b1b24;
+  color:white;
+  font-size:15px;
+  outline:none;
+  transition:.2s;
+}
+
+.search-box input:focus{
+  background:#22222c;
 }
 </style>
 </head>
@@ -144,19 +179,21 @@ h2{
 <body>
 
 <div class="topbar">
-  <div class="brand">Food-Net</div>
   <div class="logo">
     <img src="iaf-logo.png">
   </div>
 </div>
 
+<!-- HERO -->
 <section class="hero">
+  <img src="img/pic/Fela.png">
   <div class="hero-content">
-    <h1>Explore Food Around You</h1>
-    <p>Find, share, and discover places effortlessly</p>
+    <h1>Food-Net Discovery</h1>
+    <p>Explore food around you</p>
   </div>
 </section>
 
+<!-- MARKET -->
 <section class="section">
 
   <div class="search-box">
@@ -175,38 +212,13 @@ h2{
 
 <script>
 let allUnits = [];
-let userLat = null;
-let userLng = null;
 
-/* =========================
-   GET USER LOCATION
-========================= */
-navigator.geolocation.getCurrentPosition(
-  pos => {
-    userLat = pos.coords.latitude;
-    userLng = pos.coords.longitude;
-
-    if(allUnits.length){
-      sortByDistance();
-      renderUnits(allUnits);
-    }
-  },
-  err => {
-    console.warn("Lokasi ditolak / gagal:", err);
-  }
-);
-
-/* =========================
-   LOAD JSON
-========================= */
 async function loadCatalog(){
   try{
     const res = await fetch("data.json");
     const data = await res.json();
 
     allUnits = Object.values(data.personnel);
-
-    sortByDistance();
     renderUnits(allUnits);
 
   }catch(err){
@@ -214,60 +226,11 @@ async function loadCatalog(){
   }
 }
 
-/* =========================
-   DISTANCE FUNCTION
-========================= */
-function getDistance(lat1, lon1, lat2, lon2){
-  const R = 6371;
-  const dLat = (lat2-lat1) * Math.PI/180;
-  const dLon = (lon2-lon1) * Math.PI/180;
-
-  const a =
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(lat1*Math.PI/180) *
-    Math.cos(lat2*Math.PI/180) *
-    Math.sin(dLon/2) *
-    Math.sin(dLon/2);
-
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  return R * c;
-}
-
-/* =========================
-   SORT
-========================= */
-function sortByDistance(){
-  if(!userLat) return;
-
-  allUnits.sort((a,b)=>{
-    if(!a.lat || !a.lng) return 1;
-    if(!b.lat || !b.lng) return -1;
-
-    const d1 = getDistance(userLat, userLng, a.lat, a.lng);
-    const d2 = getDistance(userLat, userLng, b.lat, b.lng);
-
-    return d1 - d2;
-  });
-}
-
-/* =========================
-   RENDER
-========================= */
 function renderUnits(units){
   const market = document.getElementById("market");
   market.innerHTML = "";
 
   units.forEach(fp => {
-
-    let distanceText = fp.subtitle || "";
-
-    if(userLat && userLng && fp.lat && fp.lng){
-      const dist = getDistance(userLat, userLng, fp.lat, fp.lng);
-
-      distanceText = dist < 1
-        ? (dist * 1000).toFixed(0) + " m"
-        : dist.toFixed(1) + " km";
-    }
 
     const card = document.createElement("div");
     card.className = "unit-card";
@@ -276,9 +239,9 @@ function renderUnits(units){
       <div class="unit-img">
         <img src="${fp.profile}">
       </div>
-      <div class="unit-info">
+      <div class="unit-overlay">
         <h3>${fp.name}</h3>
-        <p>${distanceText}</p>
+        <p>${fp.subtitle || ""}</p>
       </div>
     `;
 
@@ -290,9 +253,6 @@ function renderUnits(units){
   });
 }
 
-/* =========================
-   SEARCH
-========================= */
 function filterUnits(){
   const keyword = document
     .getElementById("searchInput")
