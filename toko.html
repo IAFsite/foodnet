@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food-Net Profile</title>
+
+<style>
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#0f0f12;
+  color:#fff;
+}
+
+/* ===== TOPBAR (FIX POSISI) ===== */
+.topbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:18px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:1000;
+  background:linear-gradient(to bottom, rgba(0,0,0,.6), transparent);
+  backdrop-filter:blur(6px);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo img{
+  height:36px;
+  opacity:.95;
+}
+
+.logo span{
+  font-size:20px;
+  font-weight:700;
+  color:white;
+  letter-spacing:.5px;
+}
+
+.back-btn{
+  text-decoration:none;
+  color:#fff;
+  background:rgba(20,20,27,.6);
+  backdrop-filter:blur(6px);
+  padding:10px 16px;
+  border-radius:999px;
+  font-size:14px;
+  transition:.2s;
+}
+
+.back-btn:hover{
+  background:rgba(255,255,255,.1);
+}
+
+/* ===== BANNER ===== */
+.banner{
+  width:100%;
+  height:260px;
+  background:#1a1a22;
+  overflow:hidden;
+  position:relative;
+  margin-top:0px; /* 🔥 ganti dari body ke sini */
+}
+
+.banner img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.banner::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,#0f0f12 10%,transparent);
+}
+
+/* ===== PROFILE ===== */
+.profile-header{
+  position:relative;
+  margin-top:-70px;
+  padding:0 30px;
+  display:flex;
+  align-items:flex-end;
+  gap:20px;
+}
+
+.profile-img{
+  width:120px;
+  height:120px;
+  border-radius:16px;
+  object-fit:cover;
+  border:4px solid #0f0f12;
+}
+
+/* TEXT */
+.name{
+  font-size:24px;
+  margin:0;
+}
+
+.badge{
+  display:inline-block;
+  font-size:11px;
+  padding:3px 7px;
+  border-radius:6px;
+  margin-left:6px;
+}
+
+.verified{background:#2ecc71;}
+.premium{background:gold;color:black;}
+
+.desc{
+  margin-top:6px;
+  color:#aaa;
+  font-size:14px;
+}
+
+/* ===== SECTION ===== */
+.section{
+  padding:30px;
+  max-width:1000px;
+  margin:auto;
+}
+
+h2{margin-bottom:12px;}
+
+/* ===== INFO CARD ===== */
+.info-card{
+  background:#14141b;
+  padding:18px;
+  border-radius:16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.info-field{
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  padding-bottom:6px;
+}
+
+.info-field:last-child{
+  border-bottom:none;
+}
+
+.info-field strong{
+  color:#fff;
+}
+
+/* ===== MAP BUTTON ===== */
+.map-btn{
+  margin-top:15px;
+  display:block;
+  text-align:center;
+  padding:12px;
+  border-radius:12px;
+  background:#2ecc71;
+  color:#000;
+  font-weight:bold;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.map-btn:hover{
+  transform:scale(1.03);
+}
+
+/* ===== CARD ===== */
+.card{
+  background:#14141b;
+  padding:20px;
+  border-radius:16px;
+  color:#bbb;
+}
+
+/* ===== GALLERY ===== */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.gallery img{
+  width:100%;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+/* ===== VIEWER ===== */
+#viewer{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+
+#viewer img{
+  max-width:90%;
+  max-height:90%;
+}
+
+#closeViewer{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:40px;
+  cursor:pointer;
+}
+
+@media(max-width:800px){
+  .profile-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+
+  <a href="index.html" class="back-btn">← Back</a>
+
+  <div class="logo">
+    <img src="iaf-logo.png" alt="Food-Net Logo">
+    <span>Food-Net</span>
+  </div>
+
+</div>
+
+  <!-- BACK DI KANAN -->
+  <a href="index.html" class="back-btn">← Back</a>
+</div>
+
+<!-- BANNER -->
+<div class="banner" id="banner"></div>
+
+<!-- PROFILE -->
+<div class="profile-header">
+  <img id="profileImg" class="profile-img">
+
+  <div>
+    <h1 class="name" id="name"></h1>
+    <div class="desc" id="desc"></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+  <h2>About</h2>
+  <div class="card" id="about"></div>
+</div>
+
+<!-- GALLERY -->
+<div class="section">
+  <h2>Gallery</h2>
+  <div class="gallery" id="gallery"></div>
+</div>
+
+<div class="section">
+  <h2>Info Toko</h2>
+  <div class="info-card" id="infoCard"></div>
+
+  <a id="mapBtn" class="map-btn" target="_blank">📍 Buka di Maps</a>
+</div>
+
+<!-- VIEWER -->
+<div id="viewer">
+  <span id="closeViewer">&times;</span>
+  <img id="viewerImg">
+</div>
+
+
+
+<script>
+function getID(){
+  return new URLSearchParams(window.location.search).get("id");
+}
+
+async function loadProfile(){
+
+  const id = getID();
+  const res = await fetch("data.json");
+  const data = await res.json();
+
+const user = data.personnel[id];
+if(!user){
+  document.title = "Food-Net | Not Found";
+  return;
+}
+
+document.title = `Food-Net | ${user.name || "Unknown"}`;
+
+  // banner
+  if(user.banner){
+    document.getElementById("banner").innerHTML = `<img src="${user.banner}">`;
+  }
+
+  // basic
+  document.getElementById("profileImg").src = user.profile;
+
+  document.getElementById("name").innerHTML =
+    user.name +
+    (user.verified ? `<span class="badge verified">✔</span>` : "") +
+    (user.tier === "premium" ? `<span class="badge premium">PRO</span>` : "");
+
+  document.getElementById("about").innerText = user.description || "";
+
+  // INFO CARD
+  const infoCard = document.getElementById("infoCard");
+
+  const fields = [
+    ["Alamat", user.address],
+    ["Jam Buka", user.openHours],
+    ["Kategori", user.category],
+    ["Harga", user.priceRange]
+  ];
+
+  fields.forEach(([label,value])=>{
+    if(!value) return;
+
+    const div = document.createElement("div");
+    div.className = "info-field";
+    div.innerHTML = `<strong>${label}</strong><span>${value}</span>`;
+    infoCard.appendChild(div);
+  });
+
+  // MAP BUTTON
+  const mapBtn = document.getElementById("mapBtn");
+  if(user.lat && user.lng){
+    mapBtn.href = `https://www.google.com/maps?q=${user.lat},${user.lng}`;
+  } else {
+    mapBtn.style.display = "none";
+  }
+
+  // GALLERY
+  const gallery = document.getElementById("gallery");
+
+  if(user.tier === "premium" && user.gallery){
+    user.gallery.forEach(src=>{
+      const img = document.createElement("img");
+      img.src = src;
+      img.onclick = ()=> openViewer(src);
+      gallery.appendChild(img);
+    });
+  } else {
+    gallery.innerHTML = "<p style='color:#666'>Free tier</p>";
+  }
+}
+
+// VIEWER
+function openViewer(src){
+  document.getElementById("viewerImg").src = src;
+  document.getElementById("viewer").style.display = "flex";
+}
+
+document.getElementById("closeViewer").onclick = ()=>{
+  document.getElementById("viewer").style.display = "none";
+};
+
+document.getElementById("viewer").onclick = (e)=>{
+  if(e.target.id === "viewer"){
+    document.getElementById("viewer").style.display = "none";
+  }
+};
+
+loadProfile();
+</script>
+
+</body>
+</html>

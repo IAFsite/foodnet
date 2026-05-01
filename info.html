@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food-Net | About</title>
+
+<style>
+*{box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#0f0f12;
+  color:#fff;
+}
+
+/* ===== TOPBAR (SAMA PERSIS) ===== */
+.topbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:18px 25px;
+  display:flex;
+  justify-content:flex-end;
+  z-index:1000;
+  background:linear-gradient(to bottom, rgba(0,0,0,.6), transparent);
+  backdrop-filter:blur(6px);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo img{
+  height:36px;
+  opacity:.95;
+}
+
+.logo span{
+  font-size:20px;
+  font-weight:700;
+  color:white;
+  letter-spacing:.5px;
+}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
+}
+
+.hero img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.45);
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to top,#0f0f12 8%,transparent),
+    linear-gradient(to right,rgba(0,0,0,.55),transparent);
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding:70px 25px;
+  max-width:1200px;
+  width:100%;
+  margin:auto;
+}
+
+.hero h1{
+  margin:0;
+  font-size:64px;
+  line-height:1;
+}
+
+.hero p{
+  margin-top:14px;
+  color:#b8b8c0;
+  font-size:18px;
+  max-width:700px;
+  line-height:1.7;
+}
+
+.cta{
+  margin-top:28px;
+  display:inline-block;
+  padding:14px 22px;
+  border-radius:14px;
+  background:#fff;
+  color:#000;
+  text-decoration:none;
+  font-weight:700;
+  transition:.25s;
+}
+
+.cta:hover{
+  transform:translateY(-3px);
+}
+
+/* ===== SECTION ===== */
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:80px 25px;
+}
+
+.section-head{
+  margin-bottom:28px;
+}
+
+.kicker{
+  color:#888;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+h2{
+  margin:0;
+  font-size:36px;
+}
+
+.lead{
+  margin-top:14px;
+  color:#aaa;
+  line-height:1.8;
+  max-width:850px;
+}
+
+/* ===== SPLIT ===== */
+.split{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:28px;
+  align-items:center;
+}
+
+.visual{
+  background:#14141b;
+  border-radius:22px;
+  overflow:hidden;
+  min-height:420px;
+  position:relative;
+}
+
+.visual img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  position:absolute;
+  inset:0;
+}
+
+.placeholder{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#666;
+  font-size:14px;
+  text-align:center;
+  padding:30px;
+}
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:30px;
+}
+
+.card{
+  background:#14141b;
+  border-radius:20px;
+  overflow:hidden;
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+}
+
+.card-media{
+  aspect-ratio:16/10;
+  background:#1b1b24;
+  position:relative;
+}
+
+.card-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  position:absolute;
+  inset:0;
+}
+
+.card-body{
+  padding:20px;
+}
+
+.card h3{
+  margin:0 0 10px;
+  font-size:18px;
+}
+
+.card p{
+  margin:0;
+  color:#9d9d9d;
+  line-height:1.7;
+  font-size:14px;
+}
+
+/* ===== TIMELINE ===== */
+.timeline{
+  display:grid;
+  gap:16px;
+  margin-top:30px;
+}
+
+.step{
+  background:#14141b;
+  border-radius:18px;
+  padding:20px;
+  border-left:3px solid rgba(255,255,255,.12);
+}
+
+.step strong{
+  display:block;
+  margin-bottom:8px;
+  font-size:15px;
+}
+
+.step p{
+  margin:0;
+  color:#aaa;
+  line-height:1.7;
+  font-size:14px;
+}
+
+/* ===== CTA BLOCK ===== */
+.cta-block{
+  text-align:center;
+  background:#14141b;
+  border-radius:26px;
+  padding:70px 25px;
+}
+
+.cta-block h2{
+  font-size:42px;
+}
+
+.cta-block p{
+  color:#aaa;
+  margin:15px auto 0;
+  max-width:650px;
+  line-height:1.8;
+}
+
+.big-btn{
+  display:inline-block;
+  margin-top:28px;
+  padding:16px 28px;
+  border-radius:14px;
+  text-decoration:none;
+  color:#000;
+  background:#fff;
+  font-weight:700;
+  transition:.25s;
+}
+
+.big-btn:hover{
+  transform:translateY(-4px);
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  padding:35px 25px 60px;
+  text-align:center;
+  color:#666;
+  font-size:13px;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:900px){
+  .split{
+    grid-template-columns:1fr;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
+
+  h2{
+    font-size:28px;
+  }
+
+  .cta-block h2{
+    font-size:30px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="logo">
+    <img src="iaf-logo.png" alt="Food-Net Logo">
+    <span>Food-Net</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- FOTO 1: screenshot homepage / mockup -->
+  <img src="iimg/hero.png" alt="">
+  <div class="hero-content">
+    <h1>Discover food,<br>naturally.</h1>
+    <p>
+      Food-Net adalah platform discovery-based food information system
+      yang membantu pengguna menemukan lokasi kuliner terdekat melalui
+      visual catalog, distance engine, merchant profile, dan direct map navigation.
+    </p>
+    <a href="index.html" class="cta">Try it yourself →</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section">
+  <div class="split">
+    <div>
+      <div class="kicker">Overview</div>
+      <h2>Built for exploration</h2>
+      <p class="lead">
+        Food-Net dirancang bukan hanya sebagai katalog tempat makan,
+        tetapi sebagai platform eksplorasi digital berbasis lokasi.
+        Sistem memadukan visual-first interface, geolocation,
+        smart sorting, dan merchant profile dalam satu pengalaman
+        yang ringan, cepat, dan intuitif.
+      </p>
+    </div>
+
+    <div class="visual">
+      <!-- FOTO 2: UI preview -->
+      <img src="iimg/hero.png">
+      <div class="placeholder"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section">
+  <div class="section-head">
+    <div class="kicker">Features</div>
+    <h2>Core technology</h2>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-media">
+        <!-- FOTO 3 -->
+        <img src="iimg/location.png">
+      </div>
+      <div class="card-body">
+        <h3>Location Aware</h3>
+        <p>
+          Menggunakan Geolocation API untuk memahami posisi user
+          dan menampilkan merchant relevan di sekitar area pengguna.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-media">
+        <!-- FOTO 4 -->
+        <img src="iimg/src.png">
+      </div>
+      <div class="card-body">
+        <h3>Real-time Search</h3>
+        <p>
+          Filtering instan tanpa reload halaman,
+          memungkinkan pencarian merchant cepat dan natural.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-media">
+        <!-- FOTO 5 -->
+        <img src="iimg/profile.png">
+      </div>
+      <div class="card-body">
+        <h3>Merchant Profile</h3>
+        <p>
+          Setiap merchant memiliki halaman profil lengkap:
+          deskripsi, gallery, operational info, dan map routing.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DEVELOPMENT -->
+<section class="section">
+  <div class="section-head">
+    <div class="kicker">Development</div>
+    <h2>Evolution of Food-Net</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="step">
+      <strong>Food-Web Prototype</strong>
+      <p>Generasi awal masih berfokus pada pendekatan map overview.</p>
+    </div>
+
+    <div class="step">
+      <strong>Card-based Discovery</strong>
+      <p>UI berpindah menjadi visual merchant catalog yang lebih natural.</p>
+    </div>
+
+    <div class="step">
+      <strong>Merchant Profile System</strong>
+      <p>Detail page dikembangkan menjadi rich merchant page.</p>
+    </div>
+
+    <div class="step">
+      <strong>10,000 Merchant Simulation</strong>
+      <p>Automasi dummy database skala besar untuk stress testing.</p>
+    </div>
+
+    <div class="step">
+      <strong>Food-Net Branding</strong>
+      <p>Rebranding visual dan identitas platform sebagai standalone product.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="cta-block">
+    <h2>Ready to explore?</h2>
+    <p>
+      Buka Food-Net dan mulai temukan lokasi kuliner
+      terdekat dengan pengalaman eksplorasi yang lebih visual,
+      cepat, dan intuitif.
+    </p>
+    <a href="index.html" class="big-btn">Try it yourself →</a>
+  </div>
+</section>
+
+<div class="footer">
+  © 2026 IAF Digital Engineering — Food-Net
+</div>
+
+</body>
+</html>
