@@ -171230,17 +171230,17 @@
     },
      "FD10001": {
       "name": "Kopi Pejabat",
-      "sn": "FD001",
+      "sn": "FD10001",
       "tier": "premium",
       "verified": false,
 
-      "profile": "img/kopipejabat/p.png",
-      "banner": "img/kopipejabat/b.png",
+      "profile": "cus/kopipejabat/p.png",
+      "banner": "cus/kopipejabat/b.png",
 
       "gallery": [
-        "img/kopipejabat/1.png",
-        "img/kopipejabat/2.png",
-        "img/kopipejabat/3.png"
+        "cus/kopipejabat/1.png",
+        "cus/kopipejabat/2.png",
+        "cus/kopipejabat/3.png"
       ],
 
       "description": "Kopi bejabat adalah kopi yange terbuat dari biji kopi langsung dari petani di jawa barat",
@@ -171256,17 +171256,19 @@
 
     "FD10002": {
       "name": "Food Lab",
-      "sn": "FD002",
+      "sn": "FD10002",
       "tier": "premium",
       "verified": true,
 
-      "profile": "img/foodlab/p.png",
-      "banner": "img/foodlab/p.png",
+      "profile": "cus/foodlab/1.png",
+      "banner": "cus/foodlab/5.png",
 
       "gallery": [
-        "img/deu.png",
-        "img/alpha.png",
-        "img/cebol.png"
+        "cus/foodlab/1.png",
+        "cus/foodlab/5.png",
+        "cus/foodlab/3.png",
+        "cus/foodlab/4.png",
+        "cus/foodlab/2.png"
       ],
 
       "description": "Food lab adalah kantin yang menjual aneka gorengan dan minuman untuk murid SM sasi",
@@ -171282,11 +171284,11 @@
     
       "FD10003": {
       "name": "cake",
-      "sn": "FD003",
+      "sn": "FD10003",
       "tier": "free",
       "verified": false,
 
-      "profile": "img/cake/p.png",
+      "profile": "cus/cake/1.png",
       "banner": "",
 
       "gallery": [],
@@ -171297,6 +171299,31 @@
       "openHours": "10:00 - 13:00",
       "category": "Kopi",
       "priceRange": "Rp5k - Rp20k",
+
+      "lat": -6.338923597971662,
+      "lng": 106.92308659627825
+    },
+
+      "FD10004": {
+      "name": "eco shop",
+      "sn": "FD10004",
+      "tier": "premium",
+      "verified": true,
+
+      "profile": "cus/eco/1.png",
+      "banner": "cus/eco/5.png",
+
+      "gallery": [
+        "cus/eco/2.png",
+        "cus/eco/3.png",
+        "cus/eco/4.png"],
+
+      "description": "eco shop adalah tempat yang menjual aneka snack dan minuman dengan harga yang terjangkau",
+      
+      "address": "Jl. Raya Hankam No.99, RT.004/RW.08,",
+      "openHours": "10:00 - 13:00",
+      "category": "Kopi",
+      "priceRange": "Rp10k - Rp100k",
 
       "lat": -6.338923597971662,
       "lng": 106.92308659627825
