@@ -1,6 +1,6 @@
 {
-  "name": "WRKOS",
-  "short_name": "WRKOS",
+  "name": "Food-Net",
+  "short_name": "Food-Net",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#000000",
