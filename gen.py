@@ -1,7 +1,7 @@
 import json
 import random
 
-TOTAL_DATA = 10000
+TOTAL_DATA = 200
 
 categories = {
     "ayam_goreng": 107,
